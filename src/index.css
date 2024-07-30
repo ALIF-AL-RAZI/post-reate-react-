@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  padding: 1em;
+  background-image: linear-gradient(45deg, rgb(2, 11, 193), rgb(9, 9, 1), rgb(44, 44, 76));
+  height: 100vh;
+}
+.page {
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  .input{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+  
+    .header-input{
+      height: 40px;
+      width: 200px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .addproduct-thumnail-img{
+      height: 200px;
+      width: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      
+  }
+    .body-input{
+      
+      height: 200px;
+      width: 200px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    
+  }
+
+
+  .container{
+    flex: 5;
+    background-image: linear-gradient(45deg, rgba(43, 49, 162, 0.664), rgba(236, 231, 91, 0.632), rgba(144, 144, 232, 0.861));
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    display: inline-block;
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 10px;
+      opacity: 0.4;
+      
+    }
+    h1{
+      font-size: 55px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 0.8em;
+      color: #030101;
+      text-align: justify;
+      font-size: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(92, 78, 78, 0.5);
+      width: 80%;
+      word-wrap: break-word;
+    }
+  }
+  .buttons {
+    flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  padding: 40px;
+  button{
+    
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    background-color: #3036e0;
+    border: none;
+    outline: none;
+    padding: 1em 2em;
+    cursor: pointer;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+
+}
+
+
+
+
+
