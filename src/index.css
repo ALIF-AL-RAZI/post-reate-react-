@@ -7,6 +7,9 @@
 body {
   padding: 1em;
   background-image: linear-gradient(45deg, rgb(2, 11, 193), rgb(9, 9, 1), rgb(44, 44, 76));
+  background-size: cover;
+ background-repeat: no-repeat;
+
   
 }
 .page {
