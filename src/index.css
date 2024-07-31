@@ -35,7 +35,7 @@ body {
     }
 
     .addproduct-thumnail-img{
-      height: 200px;
+      height: 100px;
       width: 200px;
       border-radius: 10px;
       object-fit: cover;
@@ -43,7 +43,7 @@ body {
   }
     .body-input{
       
-      height: 200px;
+      height: 100px;
       width: 200px;
       border: none;
       outline: none;
@@ -64,33 +64,38 @@ body {
     display: inline-block;
     min-width: 800px;
 
-    img {
-      max-width: 100%;
-      display: block;
-      border-radius: 10px;
-      opacity: 0.4;
-      
-    }
+    
     h1{
       font-size: 55px;
       text-align: center;
       margin-bottom: 10px;
     }
-    p {
+    
+      .paragraph {
       font-size: 0.8em;
       color: #030101;
       text-align: justify;
-      font-size: 40px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 24px;
+      /* font-size: 40px; */
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(92, 78, 78, 0.5);
-      width: 80%;
-      word-wrap: break-word;
+      padding: 60px;
+      z-index: 9;
+      
     }
+    .img{
+      
+      border-radius: 10px;
+      
+      img {
+      max-width: 100%;
+      display: block;
+      border-radius: 10px;
+      
+      
+    }
+    }
+    
+    
   }
   .buttons {
     flex: 1;
