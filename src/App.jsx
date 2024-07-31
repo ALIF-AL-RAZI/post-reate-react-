@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { domToPng } from 'modern-screenshot';
+import FontPicker from "font-picker";
+
 
 function App() {
 const [headText, setHeadText] = useState("");
@@ -11,6 +13,19 @@ const [fontSize, setFontSize] = useState(20);
 const [opacity, setOpacity] = useState(0.4);
 const [bgColor, setBgColor] = useState("#ffffff");
 const [fontColor, setFontColor] = useState("#000000");
+
+const api = "AIzaSyCugkP0jti1o10o7VIJa29OiYJYKbo5O8U"
+
+useEffect(()=>{
+const fontPicker = new FontPicker(
+  api, // Google API key
+  "Open Sans", // Default font
+  { limit: 30 }, // Additional options
+);
+},[])
+
+
+
 
 const handleBgColor = (e) => {
 setBgColor(e.target.value);
@@ -137,6 +152,7 @@ function dragElement(elmnt) {
 return (
 <div className="page">
   <div className="input">
+  
     <input 
       className="header-input" 
       type="text" 
@@ -188,13 +204,13 @@ return (
 <label htmlFor="fontcolor">Select Font color:</label>
 <input type="color" id="fontcolor" value={fontColor} onChange={handleFontColor}/>
 
-      
+
   </div>   
   
 
   <div className="container">
     <h1>{headText}</h1>
-    <p className="paragraph" style={{position: 'absolute', width: `${paragraphWidth}%`, fontSize: `${fontSize}px`, color:`${fontColor}`}}>
+    <p className="paragraph apply-font"  style={{position: 'absolute', width: `${paragraphWidth}%`, fontSize: `${fontSize}px`, color:`${fontColor}`}}>
       {bodyText}
     </p>
     <div className="img" style={{backgroundColor: `${bgColor}`}}>
