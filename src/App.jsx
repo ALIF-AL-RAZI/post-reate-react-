@@ -209,7 +209,7 @@ return (
   
 
   <div className="container">
-    <h1>{headText}</h1>
+    <h1 className='apply-font'>{headText}</h1>
     <p className="paragraph apply-font"  style={{position: 'absolute', width: `${paragraphWidth}%`, fontSize: `${fontSize}px`, color:`${fontColor}`}}>
       {bodyText}
     </p>
