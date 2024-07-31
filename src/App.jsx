@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { domToPng } from 'modern-screenshot';
 import FontPicker from "font-picker";
+import EmojiPicker from 'emoji-picker-react';
 
 
 function App() {
@@ -13,6 +14,7 @@ const [fontSize, setFontSize] = useState(20);
 const [opacity, setOpacity] = useState(0.4);
 const [bgColor, setBgColor] = useState("#ffffff");
 const [fontColor, setFontColor] = useState("#000000");
+const [tfontColor, setTFontColor] = useState("#000000");
 
 const api = "AIzaSyCugkP0jti1o10o7VIJa29OiYJYKbo5O8U"
 
@@ -33,6 +35,10 @@ setBgColor(e.target.value);
 const handleFontColor = (e) => {
   setFontColor(e.target.value);
   };
+
+  const handleTFontColor = (e) => {
+    setTFontColor(e.target.value);
+    };
 
 const handleWidthChange = (e) => {
 setParagraphWidth(e.target.value);
@@ -157,7 +163,7 @@ return (
       className="header-input" 
       type="text" 
       onChange={(e) => setHeadText(e.target.value)} 
-      placeholder='Writer Header...'
+      placeholder='Writer Title...'
     />
     <label htmlFor='file-input'>
       <img src={image ? URL.createObjectURL(image) : "./upload_area.svg"} className='addproduct-thumnail-img' alt=''/>
@@ -168,7 +174,31 @@ return (
       onChange={(e) => setBodyText(e.target.value)}
       placeholder='Writer Content...'>
     </textarea>
-    <label htmlFor="width-slider">Adjust Paragraph Width:</label>
+    {/* <div>
+      <EmojiPicker />
+    </div> */}
+    
+
+  </div>   
+  
+
+  <div className="container">
+    <h1 className='apply-font' style={{color:`${tfontColor}`}}>{headText}</h1>
+    <p className="paragraph apply-font"  style={{position: 'absolute', width: `${paragraphWidth}%`, fontSize: `${fontSize}px`, color:`${fontColor}`}}>
+      {bodyText}
+    </p>
+    <div className="img" style={{backgroundColor: `${bgColor}`}}>
+      <img 
+      src={image ? URL.createObjectURL(image) : "./plain-white-background-xdwiksazlsuzkuhi.jpg"} 
+      alt=""
+      style={{opacity:`${opacity}`}}
+      />
+    </div>
+
+  </div>
+
+  <div className="buttons">
+  <label htmlFor="width-slider">Adjust Paragraph Width:</label>
       <input 
         id="width-slider" 
         type="range" 
@@ -198,32 +228,30 @@ return (
         onChange={handleOpacity} 
       />
 
-<label htmlFor="bgColor">Select Background color:</label>
-<input type="color" id="bgColor" value={bgColor} onChange={handleBgColor}/>
+      <div className="color">
+        <div className="bgcolor">
+          <label htmlFor="bgColor">Background:</label>
+      <input type="color" id="bgColor" value={bgColor} onChange={handleBgColor}/>
+        </div>
+        <div className="tfincolor">
+          <label htmlFor="tfontcolor">Title Font:</label>
+      <input type="color" id="tfontcolor" value={tfontColor} onChange={handleTFontColor}/>
+        </div>
 
-<label htmlFor="fontcolor">Select Font color:</label>
-<input type="color" id="fontcolor" value={fontColor} onChange={handleFontColor}/>
+
+<div className="fontcolor">
+  <label htmlFor="fontcolor">Body Font:</label>
+      <input type="color" id="fontcolor" value={fontColor} onChange={handleFontColor}/>
+</div>
+      
+      
+
+      
+      </div>
+
+      
 
 
-  </div>   
-  
-
-  <div className="container">
-    <h1 className='apply-font'>{headText}</h1>
-    <p className="paragraph apply-font"  style={{position: 'absolute', width: `${paragraphWidth}%`, fontSize: `${fontSize}px`, color:`${fontColor}`}}>
-      {bodyText}
-    </p>
-    <div className="img" style={{backgroundColor: `${bgColor}`}}>
-      <img 
-      src={image ? URL.createObjectURL(image) : "./plain-white-background-xdwiksazlsuzkuhi.jpg"} 
-      alt=""
-      style={{opacity:`${opacity}`}}
-      />
-    </div>
-
-  </div>
-
-  <div className="buttons">
     <button className="capture-button" onClick={downloadHandler}>Capture Screenshot</button>
   </div>
 </div>
