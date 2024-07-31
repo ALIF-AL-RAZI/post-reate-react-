@@ -9,8 +9,8 @@ const [image, setImage] = useState(false);
 const [paragraphWidth, setParagraphWidth] = useState(40);
 const [fontSize, setFontSize] = useState(20);
 const [opacity, setOpacity] = useState(0.4);
-const [bgColor, setBgColor] = useState("#fff");
-const [fontColor, setFontColor] = useState("#000");
+const [bgColor, setBgColor] = useState("#ffffff");
+const [fontColor, setFontColor] = useState("#000000");
 
 const handleBgColor = (e) => {
 setBgColor(e.target.value);
@@ -52,54 +52,86 @@ if (elmnt) {
 }
 }, []);
 
+
+
+
+
+
+
 function dragElement(elmnt) {
-var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-elmnt.onmousedown = dragMouseDown;
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-function dragMouseDown(e) {
-  e = e || window.event;
-  e.preventDefault();
-  pos3 = e.clientX;
-  pos4 = e.clientY;
-  document.onmouseup = closeDragElement;
-  document.onmousemove = elementDrag;
-}
+  elmnt.onmousedown = dragMouseDown;
+  elmnt.ontouchstart = dragTouchStart;
 
-function elementDrag(e) {
-  e = e || window.event;
-  e.preventDefault();
-  pos1 = pos3 - e.clientX;
-  pos2 = pos4 - e.clientY;
-  pos3 = e.clientX;
-  pos4 = e.clientY;
-
-  var newTop = elmnt.offsetTop - pos2;
-  var newLeft = elmnt.offsetLeft - pos1;
-
-  var container = document.querySelector(".container");
-  var containerRect = container.getBoundingClientRect();
-  var elementRect = elmnt.getBoundingClientRect();
-
-  if (newTop < 0) {
-    newTop = 0;
-  } else if (newTop + elementRect.height > containerRect.height) {
-    newTop = containerRect.height - elementRect.height;
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
   }
 
-  if (newLeft < 0) {
-    newLeft = 0;
-  } else if (newLeft + elementRect.width > containerRect.width) {
-    newLeft = containerRect.width - elementRect.width;
+  function dragTouchStart(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.touches[0].clientX;
+    pos4 = e.touches[0].clientY;
+    document.ontouchend = closeDragElement;
+    document.ontouchmove = elementTouchDrag;
   }
 
-  elmnt.style.top = newTop + "px";
-  elmnt.style.left = newLeft + "px";
-}
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    setElementPosition(elmnt);
+  }
 
-function closeDragElement() {
-  document.onmouseup = null;
-  document.onmousemove = null;
-}
+  function elementTouchDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.touches[0].clientX;
+    pos2 = pos4 - e.touches[0].clientY;
+    pos3 = e.touches[0].clientX;
+    pos4 = e.touches[0].clientY;
+    setElementPosition(elmnt);
+  }
+
+  function setElementPosition(elmnt) {
+    let newTop = elmnt.offsetTop - pos2;
+    let newLeft = elmnt.offsetLeft - pos1;
+
+    const container = document.querySelector(".container");
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = elmnt.getBoundingClientRect();
+
+    if (newTop < 0) {
+      newTop = 0;
+    } else if (newTop + elementRect.height > containerRect.height) {
+      newTop = containerRect.height - elementRect.height;
+    }
+
+    if (newLeft < 0) {
+      newLeft = 0;
+    } else if (newLeft + elementRect.width > containerRect.width) {
+      newLeft = containerRect.width - elementRect.width;
+    }
+
+    elmnt.style.top = newTop + "px";
+    elmnt.style.left = newLeft + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+    document.ontouchend = null;
+    document.ontouchmove = null;
+  }
 }
 
 return (
